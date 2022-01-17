@@ -1,0 +1,66 @@
+{
+    "events": [
+        {
+            "logStreamName": "2021/12/07/[$LATEST]7fb6365f1ea74a68adc0ed87a3e896be",
+            "timestamp": 1638842866618,
+            "message": "START RequestId: cd0beaaf-e868-49e9-9454-70ac4a2239fc Version: $LATEST\n",
+            "ingestionTime": 1638842868975,
+            "eventId": "36547417188877525952713484735379932863298429449548922880"
+        },
+        {
+            "logStreamName": "2021/12/07/[$LATEST]7fb6365f1ea74a68adc0ed87a3e896be",
+            "timestamp": 1638842866618,
+            "message": "2021-12-07T02:07:46.617Z\tundefined\tINFO\tTableName dev-pcn-iot-group dev-pcn-iot-thing\n",
+            "ingestionTime": 1638842868975,
+            "eventId": "36547417188877525952713484735379932863298429449548922881"
+        },
+        {
+            "logStreamName": "2021/12/07/[$LATEST]7fb6365f1ea74a68adc0ed87a3e896be",
+            "timestamp": 1638842866715,
+            "message": "2021-12-07T02:07:46.715Z\tcd0beaaf-e868-49e9-9454-70ac4a2239fc\tINFO\t[app.getPayload] received:  {\"property_id\":\"lambdaFiddle_property\",\"group_name\":\"Deluxe\"}\n",
+            "ingestionTime": 1638842868975,
+            "eventId": "36547417191040698236970955180108897535745320515629023234"
+        },
+        {
+            "logStreamName": "2021/12/07/[$LATEST]7fb6365f1ea74a68adc0ed87a3e896be",
+            "timestamp": 1638842866718,
+            "message": "2021-12-07T02:07:46.718Z\tcd0beaaf-e868-49e9-9454-70ac4a2239fc\tINFO\t[libs.db.getBy] param for a DB request:  {\"KeyConditionExpression\":\" #property_id = :property_id and  #name = :name\",\"ExpressionAttributeNames\":{\"#property_id\":\"property_id\",\"#name\":\"name\"},\"ExpressionAttributeValues\":{\":property_id\":\"lambdaFiddle_property\",\":name\":\"Deluxe\"},\"TableName\":\"dev-pcn-iot-group\"}\n",
+            "ingestionTime": 1638842868975,
+            "eventId": "36547417191107600472566547049533504690563265600146964483"
+        },
+        {
+            "logStreamName": "2021/12/07/[$LATEST]7fb6365f1ea74a68adc0ed87a3e896be",
+            "timestamp": 1638842866800,
+            "message": "2021-12-07T02:07:46.800Z\tcd0beaaf-e868-49e9-9454-70ac4a2239fc\tINFO\t[libs.db.getBy] return value from DB:  {\"Items\":[{\"property_id\":\"lambdaFiddle_property\",\"aliases\":[{\"name\":\"DESK_LAMP\",\"type\":\"Dimming\"},{\"name\":\"DESK_LAMP_L\",\"type\":\"Light\"},{\"name\":\"LIV_THERMO_F\",\"type\":\"Thermostat\"}],\"description\":\"IoT Group for Deluxe rooms\",\"name\":\"Deluxe\",\"scenes\":[{\"intents\":\"\",\"apply\":1,\"name\":\"checkin\",\"icon\":null,\"description\":\"\",\"event\":\"CHECK_IN\",\"actions\":[]},{\"intents\":\"\",\"apply\":1,\"name\":\"checkout\",\"icon\":null,\"description\":\"\",\"event\":\"CHECK_OUT\",\"actions\":[]},{\"intents\":\"\",\"apply\":1,\"name\":\"normal\",\"icon\":null,\"description\":\"\",\"event\":\"\",\"actions\":[]}]}],\"Count\":1,\"ScannedCount\":1}\n",
+            "ingestionTime": 1638842868975,
+            "eventId": "36547417192936261578846058147139433588920431243637358596"
+        },
+        {
+            "logStreamName": "2021/12/07/[$LATEST]7fb6365f1ea74a68adc0ed87a3e896be",
+            "timestamp": 1638842866800,
+            "message": "2021-12-07T02:07:46.800Z\tcd0beaaf-e868-49e9-9454-70ac4a2239fc\tINFO\t[libs.jsonSuccess] result:  {\"aliases\":[{\"name\":\"DESK_LAMP\",\"type\":\"Dimming\"},{\"name\":\"DESK_LAMP_L\",\"type\":\"Light\"},{\"name\":\"LIV_THERMO_F\",\"type\":\"Thermostat\"}],\"description\":\"IoT Group for Deluxe rooms\",\"name\":\"Deluxe\",\"scenes\":[{\"intents\":\"\",\"apply\":1,\"name\":\"checkin\",\"icon\":null,\"description\":\"\",\"event\":\"CHECK_IN\",\"actions\":[]},{\"intents\":\"\",\"apply\":1,\"name\":\"checkout\",\"icon\":null,\"description\":\"\",\"event\":\"CHECK_OUT\",\"actions\":[]},{\"intents\":\"\",\"apply\":1,\"name\":\"normal\",\"icon\":null,\"description\":\"\",\"event\":\"\",\"actions\":[]}]}\n",
+            "ingestionTime": 1638842868975,
+            "eventId": "36547417192936261578846058147139433588920431243637358597"
+        },
+        {
+            "logStreamName": "2021/12/07/[$LATEST]7fb6365f1ea74a68adc0ed87a3e896be",
+            "timestamp": 1638842866802,
+            "message": "END RequestId: cd0beaaf-e868-49e9-9454-70ac4a2239fc\n",
+            "ingestionTime": 1638842868975,
+            "eventId": "36547417192980863069243119393422505025465727966649319430"
+        },
+        {
+            "logStreamName": "2021/12/07/[$LATEST]7fb6365f1ea74a68adc0ed87a3e896be",
+            "timestamp": 1638842866802,
+            "message": "REPORT RequestId: cd0beaaf-e868-49e9-9454-70ac4a2239fc\tDuration: 88.14 ms\tBilled Duration: 89 ms\tMemory Size: 1024 MB\tMax Memory Used: 89 MB\tInit Duration: 645.68 ms\t\n",
+            "ingestionTime": 1638842868975,
+            "eventId": "36547417192980863069243119393422505025465727966649319431"
+        }
+    ],
+    "searchedLogStreams": [
+        {
+            "logStreamName": "2021/12/07/[$LATEST]7fb6365f1ea74a68adc0ed87a3e896be",
+            "searchedCompletely": true
+        }
+    ]
+}
