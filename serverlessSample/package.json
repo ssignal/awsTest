@@ -1,0 +1,34 @@
+{
+  "name": "fms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "create:layer": "node tools/script/makeLayer",
+    "deploy": "sls deploy",
+    "deploy:nodomain": "sls deploy -c serverless_no_domain.yml",
+    "remove": "sls remove",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "axios": "^0.26.1",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "eslint": "^8.4.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react-app": "^6.2.2",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "prettier": "^2.5.1",
+    "serverless-functions-base-path": "^1.0.32",
+    "serverless-offline": "^8.5.0",
+    "typescript": "^4.5.2"
+  }
+}

@@ -1,0 +1,307 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: redcap-mobility-service-fms
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+plugins:
+  - serverless-offline
+  - serverless-functions-base-path
+package:
+  exclude:
+    - .vscode/**
+    - overage/**
+    - layer/**
+    # - node_modules/**
+    - resources/**
+    - tests/**
+    - tools/**
+    - .eslintcache
+    - .eslintignore
+    - .eslintrc
+    - .gitignore
+    - jsconfig.json
+    - package.json
+    - README.md
+    - serverless.yml
+    - xunit_lambda.xml
+    - xunit_rest.xml
+    - xunit_unit.xml
+    - yarn.lock
+    - testNode/**
+    - package-lock.json
+    - installmodules.sh
+    - src/cscope.*
+    - src/tags
+    - Gruntfile.js
+
+# layers:
+#   default:
+#     path: layer
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: '3'
+
+custom:
+  env: ${file(./resources/env.json)}
+  functionsBasePath: 'src/handlers'   # function-base-path is needed.
+  logRetentionInDays: ${self:custom.env.logRetentionInDays}
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  logRetentionInDays: 90 # Set the default RetentionInDays for a CloudWatch LogGroup
+  stage: ${self:custom.env.stage}
+  region: ${self:custom.env.code.region.${self:custom.env.region}}
+  timeout: 30 # The default is 6 seconds. Note: API Gateway current maximum is 30 seconds
+  memorySize: 512
+  tracing:
+    lambda: true
+  environment:
+    STAGE: ${self:custom.env.stage}
+    REGIONCODE: ${self:custom.env.region}
+    REGION: ${self:custom.env.code.region.${self:custom.env.region}}
+    FMS_ENDPOINT: ${self:custom.env.fms.endPoint}
+    FMS_USERID: ${self:custom.env.fms.userID}
+    FMS_ACCESSKEY: ${self:custom.env.fms.accessKey}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+      Resource: "*"
+    - Effect: Deny
+      Action:
+        - dynamodb:DeleteBackup
+        - dynamodb:DeleteTable
+      Resource: "*"
+
+functions:
+  getMobilityInfo:
+    handler: handlers.getMobilyInfo
+    description: 'GET mobily information'
+    # layers:
+    #   - { Ref: DefaultLambdaLayer }
+  # requestToken:
+  #   handler: lambdaHandler/fms.requestToken
+  #   events:
+  #     - http:
+  #         path: /api/fms/request-token
+  #         method: get
+  #         cors: true
+  #   description: 'GET request token'
+  # mobilitySearch:
+  #   handler: lambdaHandler/fms.mobilitySearch
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-search/{serviceName}
+  #         method: get
+  #         cors: true
+  #   description: 'GET mobility list'
+  # mobilityInfo:
+  #   handler: lambdaHandler/fms.mobilityInfo
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-info/{deviceNumber}
+  #         method: get
+  #         cors: true
+  #   description: 'GET mobility info'
+  # mobilityReservation:
+  #   handler: lambdaHandler/fms.mobilityReservation
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-booking
+  #         method: post
+  #         cors: true
+  #   description: 'POST mobility reservation'
+  # mobilityReserveStatus:
+  #   handler: lambdaHandler/fms.mobilityReserveStatus
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-booking/{bookingNumber}
+  #         method: get
+  #         cors: true
+  #   description: 'GET mobility reserve status'
+  # mobilityReserveCancel:
+  #   handler: lambdaHandler/fms.mobilityReserveCancel
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-booking/{bookingNumber}
+  #         method: delete
+  #         cors: true
+  #   description: 'DELETE mobility reserve cancel'
+  # mobilityActivate:
+  #   handler: lambdaHandler/fms.mobilityActivate
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-event/{deviceNumber}/activate
+  #         method: post
+  #         cors: true
+  #   description: 'POST mobility activate'
+  # mobilityDeactivate:
+  #   handler: lambdaHandler/fms.mobilityActivate
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-event/{deviceNumber}/deactivate
+  #         method: post
+  #         cors: true
+  #   description: 'POST mobility deactivate'
+  # mobilityRegister:
+  #   handler: lambdaHandler/fms.mobilityRegister
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-register
+  #         method: post
+  #         cors: true
+  #   description: 'POST mobility register'
+  # mobilityEventHistory:
+  #   handler: lambdaHandler/fms.mobilityEventHistory
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-event/{deviceNumber}
+  #         method: get
+  #         cors: true
+  #   description: 'GET mobility event history'
+  # mobilityEventUpdate:
+  #   handler: lambdaHandler/fms.mobilityEventUpdate
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-event/{deviceNumber}/{eventType}
+  #         method: post
+  #         cors: true
+  #   description: 'POST mobility event update'
+  # mobilityControl:
+  #   handler: lambdaHandler/fms.mobilityControl
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-control/{deviceNumber}
+  #         method: post
+  #         cors: true
+  #   description: 'POST mobility control'
+  # mobilityNotify:
+  #   handler: lambdaHandler/fms.mobilityNotify
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-notify/{serviceName}
+  #         method: post
+  #         cors: true
+  #   description: 'POST mobility notify'
+  # mobilitySetPolicy:
+  #   handler: lambdaHandler/fms.mobilitySetPolicy
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-service/{serviceName}/policy
+  #         method: put
+  #         cors: true
+  #   description: 'PUT mobility set policy'
+  # mobilityGetPolicy:
+  #   handler: lambdaHandler/fms.mobilityGetPolicy
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-service/{serviceName}/policy
+  #         method: get
+  #         cors: true
+  #   description: 'GET mobility get policy'
+  # mobilitySetNotification:
+  #   handler: lambdaHandler/fms.mobilitySetNotification
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-service/{serviceName}/notification
+  #         method: post
+  #         cors: true
+  #   description: 'POST mobility set notification'
+  # mobilityGetNotification:
+  #   handler: lambdaHandler/fms.mobilityGetNotification
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-service/{serviceName}/notification
+  #         method: get
+  #         cors: true
+  #   description: 'GET mobility get notification'
+  # mobilityUpdateNotification:
+  #   handler: lambdaHandler/fms.mobilityUpdateNotification
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-service/{serviceName}/notification/{uid}
+  #         method: put
+  #         cors: true
+  #   description: 'PUT mobility put notification'
+  # mobilityDeleteNotification:
+  #   handler: lambdaHandler/fms.mobilityUpdateNotification
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-service/{serviceName}/notification/{uid}
+  #         method: delete
+  #         cors: true
+  #   description: 'DELETE mobility delete notification'
+  # mobilityTripInfo:
+  #   handler: lambdaHandler/fms.mobilityTripInfo
+  #   events:
+  #     - http:
+  #         path: /api/fms/mobility-device/{deviceNumber}/trip
+  #         method: get
+  #         cors: true
+  #   description: 'get mobility get trip info'
+#    The following are a few example events you can configure
+#    NOTE: Please make sure to change your handler code to work with those events
+#    Check the event documentation for details
+#    events:
+#      - httpApi:
+#          path: /users/create
+#          method: get
+#      - websocket: $connect
+#      - s3: ${env:BUCKET}
+#      - schedule: rate(10 minutes)
+#      - sns: greeter-topic
+#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
+#      - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx
+#      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
+#      - iot:
+#          sql: "SELECT * FROM 'some_topic'"
+#      - cloudwatchEvent:
+#          event:
+#            source:
+#              - "aws.ec2"
+#            detail-type:
+#              - "EC2 Instance State-change Notification"
+#            detail:
+#              state:
+#                - pending
+#      - cloudwatchLog: '/aws/lambda/hello'
+#      - cognitoUserPool:
+#          pool: MyUserPool
+#          trigger: PreSignUp
+#      - alb:
+#          listenerArn: arn:aws:elasticloadbalancing:us-east-1:XXXXXX:listener/app/my-load-balancer/50dc6c495c0c9188/
+#          priority: 1
+#          conditions:
+#            host: example.com
+#            path: /hello
+
+#    Define function environment variables here
+#    environment:
+#      variable2: value2
+
+# you can add CloudFormation resource templates here
+#resources:
+#  Resources:
+#    NewResource:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: my-new-bucket
+#  Outputs:
+#     NewOutput:
+#       Description: "Description for the output"
+#       Value: "Some output value"

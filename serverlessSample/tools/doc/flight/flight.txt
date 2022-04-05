@@ -1,0 +1,82 @@
+flight save
+[{
+  "status": 1,
+  "appId": "92a8e0e2",
+  "appKey": "ac3086d8c22ddc00fc999df4868c3684",
+  "interval": "10",
+  "flightId": 1,
+  "iataCode": "ICN",
+  "isDeleted": 0,
+  "airportName": "Incheon International Airport"
+}, {
+  "status": 1,
+  "appId": "92a8e0e2",
+  "appKey": "ac3086d8c22ddc00fc999df4868c3684",
+  "interval": "10",
+  "flightId": 2,
+  "iataCode": "PUS",
+  "isDeleted": 0,
+  "airportName": "Gimhae International Airport"
+}]
+
+disable
+[{
+  "status": 0,
+  "appId": "92a8e0e2",
+  "appKey": "ac3086d8c22ddc00fc999df4868c3684",
+  "interval": "15"
+}]
+status만 0으로
+
+{
+  "status": "success"
+}
+
+'https://api.flightstats.com/flex/airports/rest/v1/jsonp/iata/' + iataCode + '?appId=' + flight['appId'] + '&appKey=' + flight['appKey']
+[{
+  "fs": "ICN",
+  "iata": "ICN",
+  "icao": "RKSI",
+  "faa": "",
+  "name": "Incheon International Airport",
+  "city": "Seoul",
+  "cityCode": "SEL",
+  "countryCode": "KR",
+  "countryName": "Republic of Korea",
+  "regionName": "Asia",
+  "timeZoneRegionName": "Asia/Seoul",
+  "weatherZone": "",
+  "localTime": "2021-02-04T13:27:14.832",
+  "utcOffsetHours": 9,
+  "latitude": 37.448526,
+  "longitude": 126.451234,
+  "elevationFeet": 20,
+  "classification": 1,
+  "active": true,
+  "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/ICN?codeType=fs",
+  "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/ICN?codeType=fs"
+}]
+
+[{
+  "fs": "PUS",
+  "iata": "PUS",
+  "icao": "RKPK",
+  "faa": "",
+  "name": "Gimhae International Airport",
+  "city": "Busan",
+  "cityCode": "PUS",
+  "countryCode": "KR",
+  "countryName": "Republic of Korea",
+  "regionName": "Asia",
+  "timeZoneRegionName": "Asia/Seoul",
+  "weatherZone": "",
+  "localTime": "2021-02-04T13:27:15.056",
+  "utcOffsetHours": 9,
+  "latitude": 35.179319,
+  "longitude": 128.948728,
+  "elevationFeet": 13,
+  "classification": 2,
+  "active": true,
+  "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/PUS?codeType=fs",
+  "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/PUS?codeType=fs"
+}]

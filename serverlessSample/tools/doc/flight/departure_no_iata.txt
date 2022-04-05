@@ -1,0 +1,5 @@
+/flight?type=departure&date=2021_02_04_11&iataCode=GMP
+{
+    "result": "fail",
+    "error": "Flight information is deactivate."
+}

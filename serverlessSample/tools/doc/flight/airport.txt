@@ -1,0 +1,29 @@
+/flight?type=airport
+[
+    {
+        "flightId": "1",
+        "status": 0,
+        "appKey": "",
+        "appId": "",
+        "airportName": "Incheon International Airport",
+        "iataCode": "ICN",
+        "interval": 0,
+        "departure": "",
+        "arrival": "",
+        "updatedAt": 0,
+        "isDeleted": 0
+    },
+    {
+        "flightId": "2",
+        "status": 0,
+        "appKey": "",
+        "appId": "",
+        "airportName": "Gimhae International Airport",
+        "iataCode": "PUS",
+        "interval": 0,
+        "departure": "",
+        "arrival": "",
+        "updatedAt": 0,
+        "isDeleted": 0
+    }
+]

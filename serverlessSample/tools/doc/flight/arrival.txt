@@ -1,0 +1,106 @@
+/flight?type=arrival&date=2021_02_04_11&iataCode=PUS
+{
+    "result": "success",
+    "arrival": [
+        {
+            "scheduledDepartureTime": "2021-02-04T10:30:00.000",
+            "estimatedDepartureTime": "2021-02-04T10:49:00.000",
+            "scheduledArrivalTime": "2021-02-04T11:30:00.000",
+            "estimatedArrivalTime": "2021-02-04T11:30:00.000",
+            "departureAirportIata": "GMP",
+            "departureAirportName": "Gimpo International Airport",
+            "arrivalAirportIata": "PUS",
+            "arrivalAirportName": "Gimhae International Airport",
+            "carrier": "BX",
+            "flightNumber": "8809",
+            "status": "Active",
+            "isDelay": true
+        },
+        {
+            "scheduledDepartureTime": "2021-02-04T10:40:00.000",
+            "estimatedDepartureTime": "2021-02-04T10:40:00.000",
+            "scheduledArrivalTime": "2021-02-04T12:10:00.000",
+            "estimatedArrivalTime": "2021-02-04T12:10:00.000",
+            "departureAirportIata": "KIX",
+            "departureAirportName": "Kansai International Airport",
+            "arrivalAirportIata": "PUS",
+            "arrivalAirportName": "Gimhae International Airport",
+            "carrier": "7C",
+            "flightNumber": "1351",
+            "status": "Scheduled",
+            "isDelay": true
+        },
+        {
+            "scheduledDepartureTime": "2021-02-04T10:55:00.000",
+            "estimatedDepartureTime": "2021-02-04T10:55:00.000",
+            "scheduledArrivalTime": "2021-02-04T11:55:00.000",
+            "estimatedArrivalTime": "2021-02-04T11:55:00.000",
+            "departureAirportIata": "CJU",
+            "departureAirportName": "Jeju International Airport",
+            "arrivalAirportIata": "PUS",
+            "arrivalAirportName": "Gimhae International Airport",
+            "carrier": "7C",
+            "flightNumber": "504",
+            "status": "Active",
+            "isDelay": true
+        },
+        {
+            "scheduledDepartureTime": "2021-02-04T11:10:00.000",
+            "estimatedDepartureTime": "2021-02-04T11:10:00.000",
+            "scheduledArrivalTime": "2021-02-04T12:10:00.000",
+            "estimatedArrivalTime": "2021-02-04T12:10:00.000",
+            "departureAirportIata": "GMP",
+            "departureAirportName": "Gimpo International Airport",
+            "arrivalAirportIata": "PUS",
+            "arrivalAirportName": "Gimhae International Airport",
+            "carrier": "7C",
+            "flightNumber": "264",
+            "status": "Canceled",
+            "isDelay": true
+        },
+        {
+            "scheduledDepartureTime": "2021-02-04T11:15:00.000",
+            "estimatedDepartureTime": "2021-02-04T11:15:00.000",
+            "scheduledArrivalTime": "2021-02-04T12:20:00.000",
+            "estimatedArrivalTime": "2021-02-04T12:20:00.000",
+            "departureAirportIata": "GMP",
+            "departureAirportName": "Gimpo International Airport",
+            "arrivalAirportIata": "PUS",
+            "arrivalAirportName": "Gimhae International Airport",
+            "carrier": "KE",
+            "flightNumber": "1109",
+            "status": "Scheduled",
+            "isDelay": true
+        },
+        {
+            "scheduledDepartureTime": "2021-02-04T11:30:00.000",
+            "estimatedDepartureTime": "2021-02-04T11:50:00.000",
+            "scheduledArrivalTime": "2021-02-04T12:30:00.000",
+            "estimatedArrivalTime": "2021-02-04T12:50:00.000",
+            "departureAirportIata": "GMP",
+            "departureAirportName": "Gimpo International Airport",
+            "arrivalAirportIata": "PUS",
+            "arrivalAirportName": "Gimhae International Airport",
+            "carrier": "BX",
+            "flightNumber": "8811",
+            "status": "Scheduled",
+            "isDelay": true
+        },
+        {
+            "scheduledDepartureTime": "2021-02-04T11:35:00.000",
+            "estimatedDepartureTime": "2021-02-04T11:35:00.000",
+            "scheduledArrivalTime": "2021-02-04T12:35:00.000",
+            "estimatedArrivalTime": "2021-02-04T12:35:00.000",
+            "departureAirportIata": "GMP",
+            "departureAirportName": "Gimpo International Airport",
+            "arrivalAirportIata": "PUS",
+            "arrivalAirportName": "Gimhae International Airport",
+            "carrier": "LJ",
+            "flightNumber": "353",
+            "status": "Scheduled",
+            "isDelay": true
+        }
+    ],
+    "airportName": "Gimhae International Airport",
+    "iataCode": "PUS"
+}

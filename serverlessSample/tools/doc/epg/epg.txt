@@ -1,0 +1,21 @@
+/settings/setEPGDataSourceSettings / 29
+{
+  "epgDataSourceSettings": {
+    "host": "procentricepg.lge.com",
+    "directory": "USA60069",
+    "user": "pcsuser",
+    "password": "pcs123!@#",
+    "hours": "48",
+    "lastFetch": "2/16/2021 05:43 AM",
+    "downloadSummary": "1 files, total size: 31,497,796 bytes"
+  }
+}
+
+{
+  "host": "procentricepg.lge.com",
+  "user": "pcsuser",
+  "password": "pcs123!@#",
+  "directory": "USA60069",
+  "hours": "48",
+  "lastfetchStatus": null
+}

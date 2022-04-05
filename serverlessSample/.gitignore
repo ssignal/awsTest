@@ -1,0 +1,23 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# debuging
+node_modules
+package-lock.json
+cscope.*
+*.swp
+*.swo
+*.swn
+*.swm
+tags
+.serverless
+testNode/output
+*.lock
+resources/testPayload/tmp*
+resources/testPayload/test*
+lintResult
+yarn-error.log
