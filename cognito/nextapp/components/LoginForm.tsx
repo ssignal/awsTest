@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import userPool from '../src/userPool';
-import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
+import { CognitoUser, CognitoUserSession, AuthenticationDetails } from 'amazon-cognito-identity-js';
 
 const LoginFormContainer = styled.div`
     h1 {
@@ -48,7 +48,7 @@ type Props = {
     setUserId: Dispatch<SetStateAction<string | null>>;
 };
 
-export default function LoginForm({ goSignup, setUserId }: Props) {
+export default function LoginForm({ goSignup, setUserId, setToken, setSession }: Props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -60,15 +60,30 @@ export default function LoginForm({ goSignup, setUserId }: Props) {
     }, []);
 
     const authenticate = useCallback((email, Password) => {
-        const congnitoUser = new CognitoUser({
+        const cognitoUser = new CognitoUser({
             Username: email,
             Pool: userPool,
         });
         const authDetails = new AuthenticationDetails({ Username: email, Password });
-        congnitoUser.authenticateUser(authDetails, {
+        cognitoUser.authenticateUser(authDetails, {
             onSuccess: function (result: any) {
-				console.log(result);
+				const IdToken = result.idToken.jwtToken;
+				const AccessToken = result.accessToken.jwtToken;
+				const RefreshToken = result.refreshToken.token;
+				console.log('authenticateUser.result:', result);
+
                 setUserId(result.idToken.payload.email);
+				// setToken(result.refreshToken.token);
+                setToken(result.accessToken.jwtToken);
+				// const session = new CognitoUserSession({
+				//         IdToken,
+				//         AccessToken,
+				//         RefreshToken
+				//         });
+				// cognitoUser.signInUserSession = session;
+				cognitoUser.setSignInUserSession(result) // This one raise the Exception: TypeError: Cannot read property 'getToken' of undefined
+				setSession(result);
+				console.log('session:', result);
             },
             onFailure: function (err) {
                 console.log(err);
