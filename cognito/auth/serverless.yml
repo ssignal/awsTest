@@ -1,0 +1,136 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: redcap-mobility-service-auth
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+plugins:
+  - serverless-offline
+  - serverless-functions-base-path
+  # - serverless-domain-manager
+package:
+  exclude:
+    - .vscode/**
+    - overage/**
+    - layer/**
+    # - node_modules/**
+    - resources/**
+    - tests/**
+    - tools/**
+    - .eslintcache
+    - .eslintignore
+    - .eslintrc
+    - .gitignore
+    - jsconfig.json
+    - package.json
+    - README.md
+    - serverless.yml
+    - xunit_lambda.xml
+    - xunit_rest.xml
+    - xunit_unit.xml
+    - yarn.lock
+    - testNode/**
+    - package-lock.json
+    - installmodules.sh
+    - cscope.*
+    - tags
+    - Gruntfile.js
+
+# layers:
+#   default:
+#     path: layer
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: '3'
+
+custom:
+  env: ${file(./resources/env.json)}
+  functionsBasePath: 'src/handlers'   # function-base-path is needed.
+  logRetentionInDays: ${self:custom.env.logRetentionInDays}
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  logRetentionInDays: 90 # Set the default RetentionInDays for a CloudWatch LogGroup
+  stage: ${self:custom.env.stage}
+  region: ${self:custom.env.code.region.${self:custom.env.region}}
+  timeout: 30 # The default is 6 seconds. Note: API Gateway current maximum is 30 seconds
+  memorySize: 512
+  tracing:
+    lambda: true
+  environment:
+    STAGE: ${self:custom.env.stage}
+    REGIONCODE: ${self:custom.env.region}
+    REGION: ${self:custom.env.code.region.${self:custom.env.region}}
+    SENDER_EMAIL: ${self:custom.env.auth.email.sender}
+    TABLE_NAME: ${self:custom.env.auth.db.tableName}-${self:custom.env.stage}
+    CODE_MIN: ${self:custom.env.auth.code.min}
+    CODE_MAX: ${self:custom.env.auth.code.max}
+    VERIFY_EMAIL_TITLE: ${self:custom.env.auth.email.title}
+    VERIFY_EMAIL_MESSAGE: ${self:custom.env.auth.email.message}
+    VERIFY_EMAIL_LINK: ${self:custom.env.auth.email.link}
+    COGNITO_USERPOOLID: ${self:custom.env.auth.cognito.userPoolId}
+    COGNITO_CLIENTID: ${self:custom.env.auth.cognito.clientId}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+        - dynamodb:*
+        - ses:*
+        - cognito-idp:AdminInitiateAuth
+      Resource: "*"
+    - Effect: Deny
+      Action:
+        - dynamodb:DeleteBackup
+        - dynamodb:DeleteTable
+      Resource: "*"
+
+functions:
+  sendVerifyEmail:
+    handler: handlers.sendVerifyEmail
+    description: 'send email for verification'
+  sendVerifyCode:
+    handler: handlers.sendVerifyCode
+    description: 'send code for verification'
+  setLogIn:
+    handler: handlers.setLogIn
+    description: 'set login, return token'
+  refreshToken:
+    handler: handlers.refreshToken
+    description: 'refreshToken with accessToken'
+  licenseCallback:
+    handler: license.licenseCallback
+    description: 'get callback information for driver license'
+    # layers:
+    #   - { Ref: DefaultLambdaLayer }
+
+resources:
+  Resources:
+    serviceTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:provider.environment.TABLE_NAME}
+        AttributeDefinitions:
+        - AttributeName: type
+          AttributeType: S
+        - AttributeName: userId 
+          AttributeType: S
+        KeySchema:
+        - AttributeName: type
+          KeyType: HASH
+        - AttributeName: userId
+          KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
